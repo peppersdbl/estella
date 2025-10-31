@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M100 20 Q80 30 80 50 L80 80 Q75 85 70 80 Q65 75 60 80 L55 85 Q50 90 50 95 L50 120 Q50 130 55 135 L60 140 Q50 145 45 155 L40 170 Q38 180 45 185 L100 180 Q100 160 105 150 L110 140 Q115 135 120 140 L125 145 Q130 150 135 145 L140 140 Q145 135 145 130 L145 100 Q148 90 155 85 L160 80 Q165 75 160 70 Q155 65 150 70 L145 75 Q140 80 140 70 L140 50 Q140 30 120 20 L110 15 Q105 12 100 20 Z M95 35 Q90 40 90 48 Q90 55 95 60 Q100 65 105 60 Q110 55 110 48 Q110 40 105 35 Q100 30 95 35 Z M85 50 Q80 45 75 50 L70 60 Q68 70 75 75 L85 70 Q90 65 85 50 Z" fill="none" stroke="white" stroke-width="2" opacity="0.15"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .interactive-zone {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 60px auto;
+            max-width: 800px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .counter {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .interactive-zone { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div class="container">
+        <h1>✨ Zona Experimental ✨</h1>
+        <p class="subtitle">Explora y interactúa con elementos dinámicos</p>
+
+        <div class="grid">
+            <div class="card" onclick="changeBackground()">
+                <h3>🎨 Cambiar Colores</h3>
+                <p>Haz clic para cambiar el esquema de colores de fondo</p>
+            </div>
+            <div class="card" onclick="createParticles()">
+                <h3>✨ Explosión</h3>
+                <p>Genera una explosión de partículas animadas</p>
+            </div>
+            <div class="card" onclick="toggleAnimation()">
+                <h3>🌀 Animación</h3>
+                <p>Activa o desactiva las animaciones de fondo</p>
+            </div>
+            <div class="card" onclick="randomMessage()">
+                <h3>💬 Mensaje</h3>
+                <p>Obtén un mensaje inspirador aleatorio</p>
+            </div>
+        </div>
+
+        <div class="interactive-zone">
+            <h2>Contador Interactivo</h2>
+            <div class="counter" id="counter">0</div>
+            <div class="button-group">
+                <button onclick="incrementCounter()">➕ Incrementar</button>
+                <button onclick="decrementCounter()">➖ Decrementar</button>
+                <button onclick="resetCounter()">🔄 Resetear</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        let animationEnabled = true;
+        let counter = 0;
+
+        const gradients = [
+            ['#667eea', '#764ba2'],
+            ['#f093fb', '#f5576c'],
+            ['#4facfe', '#00f2fe'],
+            ['#43e97b', '#38f9d7'],
+            ['#fa709a', '#fee140']
+        ];
+        let currentGradient = 0;
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.opacity = 1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity -= 0.01;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            if (animationEnabled) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((particle, index) => {
+                    particle.update();
+                    particle.draw();
+                    if (particle.opacity <= 0) {
+                        particles.splice(index, 1);
+                    }
+                });
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function createParticles() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle(centerX, centerY));
+            }
+        }
+
+        function changeBackground() {
+            currentGradient = (currentGradient + 1) % gradients.length;
+            const [color1, color2] = gradients[currentGradient];
+            document.body.style.background = `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+        }
+
+        function toggleAnimation() {
+            animationEnabled = !animationEnabled;
+            if (!animationEnabled) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function randomMessage() {
+            const messages = [
+                '¡Eres increíble amor!',
+                '¡Te amo!',
+                '¡Ya tomaste awita amor ?!',
+                '¡Eres lo mejor que me pudo haber pasado!',
+                '¡vamos a casarnos!'
+            ];
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            alert(msg);
+        }
+
+        function incrementCounter() {
+            counter++;
+            document.getElementById('counter').textContent = counter;
+        }
+
+        function decrementCounter() {
+            counter--;
+            document.getElementById('counter').textContent = counter;
+        }
+
+        function resetCounter() {
+            counter = 0;
+            document.getElementById('counter').textContent = counter;
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        canvas.addEventListener('click', (e) => {
+            for (let i = 0; i < 10; i++) {
+                particles.push(new Particle(e.clientX, e.clientY));
+            }
+        });
+
+        animate();
+    </script>
+</body>
+</html>
