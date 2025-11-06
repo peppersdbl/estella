@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiencia Digital</title>
+    <title>Anthony's Corporation</title>
     <style>
         * {
             margin: 0;
@@ -12,311 +12,377 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: white;
-            position: relative;
-        }
+```
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+        color: white;
+    }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M100 20 Q80 30 80 50 L80 80 Q75 85 70 80 Q65 75 60 80 L55 85 Q50 90 50 95 L50 120 Q50 130 55 135 L60 140 Q50 145 45 155 L40 170 Q38 180 45 185 L100 180 Q100 160 105 150 L110 140 Q115 135 120 140 L125 145 Q130 150 135 145 L140 140 Q145 135 145 130 L145 100 Q148 90 155 85 L160 80 Q165 75 160 70 Q155 65 150 70 L145 75 Q140 80 140 70 L140 50 Q140 30 120 20 L110 15 Q105 12 100 20 Z M95 35 Q90 40 90 48 Q90 55 95 60 Q100 65 105 60 Q110 55 110 48 Q110 40 105 35 Q100 30 95 35 Z M85 50 Q80 45 75 50 L70 60 Q68 70 75 75 L85 70 Q90 65 85 50 Z" fill="none" stroke="white" stroke-width="2" opacity="0.15"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.15;
-            z-index: 0;
-            pointer-events: none;
-        }
+    .container {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
 
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    h1 {
+        font-size: 4rem;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        animation: glow 2s ease-in-out infinite alternate;
+    }
 
-        h1 {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
+    @keyframes glow {
+        from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+        to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+    }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-            to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
-        }
+    .subtitle {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 60px;
+        opacity: 0.9;
+    }
 
-        .subtitle {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 60px;
-            opacity: 0.9;
-        }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    .card:hover {
+        transform: translateY(-10px) scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.05);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
+    .card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
 
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
+    .card p {
+        opacity: 0.8;
+        line-height: 1.6;
+    }
 
-        .card p {
-            opacity: 0.8;
-            line-height: 1.6;
-        }
+    #canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
 
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
+    .interactive-zone {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border-radius: 30px;
+        padding: 50px;
+        margin: 60px auto;
+        max-width: 800px;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
 
-        .interactive-zone {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 50px;
-            margin: 60px auto;
-            max-width: 800px;
-            text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
+    .button-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
 
-        .button-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
+    button {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        color: white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
 
-        button {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+    button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
 
-        button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
+    button:active {
+        transform: scale(0.95);
+    }
 
-        button:active {
-            transform: scale(0.95);
-        }
+    .counter {
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 20px 0;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
 
-        .counter {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 20px 0;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
+    @media (max-width: 768px) {
+        h1 { font-size: 2.5rem; }
+        .subtitle { font-size: 1.2rem; }
+        .interactive-zone { padding: 30px; }
+    }
+</style>
+```
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.2rem; }
-            .interactive-zone { padding: 30px; }
-        }
-    </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    
-    <div class="container">
-        <h1>✨ Pagina que te avisa cuando tu persona amada ya hizo popis ✨</h1>
-        <p class="subtitle">Ya sucedio, hoy a las 08:30 am</p>
 
-        <div class="grid">
-            <div class="card" onclick="changeBackground()">
-                <h3>🎨 Cambiar Colores</h3>
-                <p>Haz clic para cambiar el esquema de colores de fondo</p>
-            </div>
-            <div class="card" onclick="createParticles()">
-                <h3>✨ Explosión</h3>
-                <p>Genera una explosión de partículas animadas</p>
-            </div>
-            <div class="card" onclick="toggleAnimation()">
-                <h3>🌀 Animación</h3>
-                <p>Activa o desactiva las animaciones de fondo</p>
-            </div>
-            <div class="card" onclick="randomMessage()">
-                <h3>💬 Mensaje</h3>
-                <p>Obtén un mensaje aleatorio</p>
-            </div>
+```
+<div class="container">
+    <h1>✨ Pagina que te avisa si tu recalentó o rucaleta ya hizo popis ✨</h1>
+    <p class="subtitle">For Estella Resendiz</p>
+
+    <div class="grid">
+        <div class="card" onclick="changeBackground()">
+            <h3>🎨 Cambiar Colores</h3>
+            <p>Haz clic para cambiar el esquema de colores de fondo</p>
         </div>
-
-        <div class="interactive-zone">
-            <h2>Contador Interactivo</h2>
-            <div class="counter" id="counter">0</div>
-            <div class="button-group">
-                <button onclick="incrementCounter()">➕ Incrementar</button>
-                <button onclick="decrementCounter()">➖ Decrementar</button>
-                <button onclick="resetCounter()">🔄 Resetear</button>
-            </div>
+        <div class="card" onclick="createParticles()">
+            <h3>✨ Explosión</h3>
+            <p>Genera una explosión de partículas animadas</p>
+        </div>
+        <div class="card" onclick="toggleAnimation()">
+            <h3>🌀 Animación</h3>
+            <p>Activa o desactiva las animaciones de fondo</p>
+        </div>
+        <div class="card" onclick="randomMessage()">
+            <h3>💬 Mensaje</h3>
+            <p>Obtén un mensaje inspirador aleatorio</p>
         </div>
     </div>
 
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+    <div class="interactive-zone">
+        <h2>📝 Pizarrón Colaborativo</h2>
+        <p style="opacity: 0.8; margin-bottom: 20px;">¡Todos pueden escribir aquí! Los cambios se guardan automáticamente y son visibles para todos los visitantes.</p>
+        <textarea id="sharedBoard" placeholder="Te amo lorito... ✍️" style="
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            font-family: inherit;
+            resize: vertical;
+            backdrop-filter: blur(10px);
+        "></textarea>
+        <div class="button-group">
+            <button onclick="saveBoard()">💾 Guardar</button>
+            <button onclick="loadBoard()">🔄 Recargar</button>
+        </div>
+        <p id="saveStatus" style="margin-top: 15px; opacity: 0.7; font-size: 0.9rem;"></p>
+    </div>
+
+    <div class="interactive-zone">
+        <h2>Contador Interactivo</h2>
+        <div class="counter" id="counter">0</div>
+        <div class="button-group">
+            <button onclick="incrementCounter()">➕ Incrementar</button>
+            <button onclick="decrementCounter()">➖ Decrementar</button>
+            <button onclick="resetCounter()">🔄 Resetear</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    let animationEnabled = true;
+    let counter = 0;
+
+    const gradients = [
+        ['#667eea', '#764ba2'],
+        ['#f093fb', '#f5576c'],
+        ['#4facfe', '#00f2fe'],
+        ['#43e97b', '#38f9d7'],
+        ['#fa709a', '#fee140']
+    ];
+    let currentGradient = 0;
+
+    class Particle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = Math.random() * 3 - 1.5;
+            this.speedY = Math.random() * 3 - 1.5;
+            this.opacity = 1;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.opacity -= 0.01;
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function animate() {
+        if (animationEnabled) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((particle, index) => {
+                particle.update();
+                particle.draw();
+                if (particle.opacity <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function createParticles() {
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle(centerX, centerY));
+        }
+    }
+
+    function changeBackground() {
+        currentGradient = (currentGradient + 1) % gradients.length;
+        const [color1, color2] = gradients[currentGradient];
+        document.body.style.background = `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
+    }
+
+    function toggleAnimation() {
+        animationEnabled = !animationEnabled;
+        if (!animationEnabled) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+
+    function randomMessage() {
+        const messages = [
+            '¡Eres increíble!',
+            '¡Sigue experimentando!',
+            '¡La creatividad no tiene límites!',
+            '¡El código es arte!',
+            '¡GitHub te espera!'
+        ];
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+        alert(msg);
+    }
+
+    function incrementCounter() {
+        counter++;
+        document.getElementById('counter').textContent = counter;
+    }
+
+    function decrementCounter() {
+        counter--;
+        document.getElementById('counter').textContent = counter;
+    }
+
+    function resetCounter() {
+        counter = 0;
+        document.getElementById('counter').textContent = counter;
+    }
+
+    window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+    });
 
-        let particles = [];
-        let animationEnabled = true;
-        let counter = 0;
+    canvas.addEventListener('click', (e) => {
+        for (let i = 0; i < 10; i++) {
+            particles.push(new Particle(e.clientX, e.clientY));
+        }
+    });
 
-        const gradients = [
-            ['#667eea', '#764ba2'],
-            ['#f093fb', '#f5576c'],
-            ['#4facfe', '#00f2fe'],
-            ['#43e97b', '#38f9d7'],
-            ['#fa709a', '#fee140']
-        ];
-        let currentGradient = 0;
+    animate();
 
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.opacity = 1;
+    // Funciones del pizarrón colaborativo
+    async function saveBoard() {
+        const content = document.getElementById('sharedBoard').value;
+        const status = document.getElementById('saveStatus');
+        
+        try {
+            status.textContent = '💾 Guardando...';
+            const result = await window.storage.set('collaborative-board', content, true);
+            
+            if (result) {
+                status.textContent = '✅ ¡Guardado! Todos pueden verlo ahora.';
+                setTimeout(() => status.textContent = '', 3000);
+            } else {
+                status.textContent = '❌ Error al guardar. Intenta de nuevo.';
             }
+        } catch (error) {
+            status.textContent = '❌ Error: ' + error.message;
+        }
+    }
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.opacity -= 0.01;
+    async function loadBoard() {
+        const status = document.getElementById('saveStatus');
+        const textarea = document.getElementById('sharedBoard');
+        
+        try {
+            status.textContent = '🔄 Cargando...';
+            const result = await window.storage.get('collaborative-board', true);
+            
+            if (result && result.value) {
+                textarea.value = result.value;
+                status.textContent = '✅ ¡Contenido cargado!';
+                setTimeout(() => status.textContent = '', 3000);
+            } else {
+                status.textContent = 'ℹ️ El pizarrón está vacío. ¡Sé el primero en escribir!';
+                setTimeout(() => status.textContent = '', 3000);
             }
-
-            draw() {
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+        } catch (error) {
+            status.textContent = 'ℹ️ El pizarrón está vacío. ¡Sé el primero en escribir!';
+            setTimeout(() => status.textContent = '', 3000);
         }
+    }
 
-        function animate() {
-            if (animationEnabled) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach((particle, index) => {
-                    particle.update();
-                    particle.draw();
-                    if (particle.opacity <= 0) {
-                        particles.splice(index, 1);
-                    }
-                });
-            }
-            requestAnimationFrame(animate);
+    // Cargar el contenido del pizarrón al inicio
+    window.addEventListener('load', loadBoard);
+
+    // Auto-guardar cada 30 segundos si hay cambios
+    let lastContent = '';
+    setInterval(async () => {
+        const currentContent = document.getElementById('sharedBoard').value;
+        if (currentContent !== lastContent && currentContent.trim() !== '') {
+            lastContent = currentContent;
+            await saveBoard();
         }
+    }, 30000);
+</script>
+```
 
-        function createParticles() {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle(centerX, centerY));
-            }
-        }
-
-        function changeBackground() {
-            currentGradient = (currentGradient + 1) % gradients.length;
-            const [color1, color2] = gradients[currentGradient];
-            document.body.style.background = `linear-gradient(135deg, ${color1} 0%, ${color2} 100%)`;
-        }
-
-        function toggleAnimation() {
-            animationEnabled = !animationEnabled;
-            if (!animationEnabled) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-
-        function randomMessage() {
-            const messages = [
-                '¡Eres increíble amor!',
-                '¡Te amo!',
-                '¡Ya tomaste awita amor ?!',
-                '¡Eres lo mejor que me pudo haber pasado!',
-                '¡vamos a casarnos!'
-            ];
-            const msg = messages[Math.floor(Math.random() * messages.length)];
-            alert(msg);
-        }
-
-        function incrementCounter() {
-            counter++;
-            document.getElementById('counter').textContent = counter;
-        }
-
-        function decrementCounter() {
-            counter--;
-            document.getElementById('counter').textContent = counter;
-        }
-
-        function resetCounter() {
-            counter = 0;
-            document.getElementById('counter').textContent = counter;
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        canvas.addEventListener('click', (e) => {
-            for (let i = 0; i < 10; i++) {
-                particles.push(new Particle(e.clientX, e.clientY));
-            }
-        });
-
-        animate();
-    </script>
 </body>
 </html>
